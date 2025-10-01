@@ -1,5 +1,23 @@
+/* Color Palette Variables 
+  Based on the provided color theme image.
+*/
+:root {
+  --dark-green: #032221;
+  --bangladesh-green: #03624C;
+  --mountain-meadow: #2CC297;
+  --caribbean-green: #00DF81;
+  --anti-flash-white: #F0F2F5;
+  --pine: #06302B;
+  --stone: #707070;
+  --pistachio: #AACBC4;
+  --white: #FFFFFF;
+  --red-negative: red;
+}
+
+/* Base Styles */
 @font-face {
     font-family: "SF Pro Rounded";
+    /* Make sure this path is correct for your project */
     src: url("src/SF-Pro-Rounded-Regular.otf") format("opentype");
     font-weight: normal;
 }
@@ -12,13 +30,16 @@
 
 body {
     font-family: "SF Pro Rounded", sans-serif;
-    background-color: #D6D2CF;
+    background-color: var(--anti-flash-white);
+    color: var(--dark-green);
     margin: 0;
     padding: 20px;
     user-select: none;
     direction: ltr;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
@@ -34,12 +55,13 @@ h1 {
 
 #datetime {
     font-size: 14px;
-    color: #666;
+    color: var(--stone);
     margin: 0;
     padding: 5px 10px;
     border-radius: 5px;
 }
 
+/* Grid & Cards */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--grid-size, 155px), 1fr));
@@ -47,16 +69,17 @@ h1 {
 }
 
 .card {
-    background: #F8F7F5;
+    background: var(--white);
     padding: 15px;
     border-radius: 15px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(3, 34, 33, 0.07); /* A softer shadow using a palette color */
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 120px;
     aspect-ratio: auto;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .currency-info {
@@ -83,7 +106,7 @@ h1 {
 
 .code {
     font-size: 14px;
-    color: #888;
+    color: var(--stone);
     margin: 0;
 }
 
@@ -98,18 +121,20 @@ h1 {
     font-size: 35px;
     font-weight: bold;
     margin: 0;
+    color: var(--bangladesh-green);
 }
 
 .change {
     font-size: 18px;
-    color: red;
+    color: var(--red-negative);
     margin: 0;
 }
 
 .change.positive {
-    color: #2ecc71;
+    color: var(--mountain-meadow);
 }
 
+/* Modal Styles */
 .modal {
     position: fixed;
     top: 0;
@@ -124,19 +149,26 @@ h1 {
 }
 
 .modal-content {
-    background-color: white;
+    background-color: var(--white);
+    color: var(--dark-green);
     padding: 15px;
     border-radius: 10px;
     width: 270px;
     position: relative;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .close {
     position: absolute;
     top: 10px;
-    right: 10px; /* بردم سمت راست */
+    right: 10px;
     font-size: 18px;
     cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 18px;
 }
 
 .currency-item {
@@ -150,18 +182,12 @@ h1 {
     cursor: pointer;
 }
 
-.modal-content h2 {
-    margin-top: 0;
-    font-size: 18px;
-    color: #333;
-}
-
 .currency-item label {
     font-size: 14px;
-    color: #333;
     cursor: pointer;
 }
 
+/* Settings Section */
 #settings-btn {
     font-size: 15px;
     cursor: pointer;
@@ -172,72 +198,79 @@ h1 {
     margin: 12px 0;
     padding: 12px;
     border-radius: 10px;
-    background: #f5f5f5;
-    border: 1px solid #eee;
+    background: var(--anti-flash-white);
+    border: 1px solid var(--pistachio);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .settings-section label {
     font-size: 14px;
 }
 
-/* دکمه Manage Cards */
 .card-btn {
     font-size: 14px;
     font-weight: bold;
     padding: 8px 14px;
-    border: none;
+    border: 1px solid var(--pistachio);
     border-radius: 8px;
-    background: #fff;   
-    color: #000;        
+    background: var(--white);
+    color: var(--dark-green);
     cursor: pointer;
-    border: 1px solid #ccc;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-/* ورودی Grid Size */
 .grid-Input {
     width: 60px;
     padding: 5px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--pistachio);
     text-align: center;
     font-size: 13px;
+    background-color: var(--white);
+    color: var(--dark-green);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .grid-Input:focus {
-    border: 1px solid #4facfe;
+    border-color: var(--mountain-meadow);
 }
 
-/* حالت دارک مود */
+/* Dark Mode Overrides */
 body.dark-mode {
-    background-color: #00df81;
-    color: #f0f0f0;
-}
-
-body.dark-mode .settings-section,
-body.dark-mode .currency-item,
-body.dark-mode .modal-content,
-body.dark-mode .currency-item label,
-body.dark-mode .modal-content h2 {
-    background-color: #2c2c2c;
-    color: #f0f0f0;
+    background-color: var(--dark-green);
+    color: var(--anti-flash-white);
 }
 
 body.dark-mode .card {
-    background: #2b2b2b;
-    color: #fff;
+    background: var(--pine);
+}
+
+body.dark-mode .price {
+    color: var(--caribbean-green);
+}
+
+body.dark-mode .modal-content,
+body.dark-mode .settings-section {
+    background-color: var(--pine);
+    color: var(--anti-flash-white);
+    border-color: var(--bangladesh-green);
 }
 
 body.dark-mode .card-btn {
-    background: #1e1e1e; 
-    color: #fff;
-    border: 1px solid #666;
+    background: var(--dark-green);
+    color: var(--anti-flash-white);
+    border-color: var(--bangladesh-green);
 }
 
 body.dark-mode .grid-Input {
-    background: #1e1e1e;
-    color: #fff;        
-    border: 1px solid #555;
+    background: var(--dark-green);
+    color: var(--anti-flash-white);
+    border-color: var(--bangladesh-green);
+}
+
+body.dark-mode .grid-Input:focus {
+    border-color: var(--caribbean-green);
 }
